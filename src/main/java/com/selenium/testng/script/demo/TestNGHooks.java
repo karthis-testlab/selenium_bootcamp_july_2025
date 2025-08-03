@@ -1,5 +1,7 @@
 package com.selenium.testng.script.demo;
 
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -14,6 +16,13 @@ public class TestNGHooks extends SeleniumBase {
 		System.out.println(browserName);
 		launchBrowser(browserName);
 		maximize();
+	}
+	
+	@AfterMethod
+	public void afterMethod(ITestResult result) {
+		if(!result.isSuccess()) {
+			takeSnapShot(result.getName());
+		}
 	}
 	
 	@AfterSuite

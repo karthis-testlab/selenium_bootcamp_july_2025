@@ -1,11 +1,15 @@
 package com.selenium.testng.script.demo;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -114,6 +118,14 @@ public class SeleniumBase {
 	
 	public static String getDomText(WebElement element) {
 		return element.getText();
+	}
+	
+	public static void takeSnapShot(String filename) {
+		try {
+			FileUtils.copyFile(driver.getScreenshotAs(OutputType.FILE), new File("./" + filename + ".png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
