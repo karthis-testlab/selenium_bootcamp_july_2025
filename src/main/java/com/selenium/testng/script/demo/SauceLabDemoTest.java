@@ -6,13 +6,9 @@ import org.testng.annotations.Test;
 
 public class SauceLabDemoTest extends TestNGHooks {
 	
-	@DataProvider
+	@DataProvider(name = "data")
 	public String[][] getTestData() {
-		return new String[][] {
-			{"", "", ""},
-			{"", "", ""},
-			{"", "", ""}
-		};
+		return ExcelDataHandler.getTestData("test-data");
 	}
 	
 	@Test
@@ -22,6 +18,11 @@ public class SauceLabDemoTest extends TestNGHooks {
 		type(locateElement("password"), "secret_sauce");
 		click(locateElement(LocatorType.XPATH, "//*[@id=login-button]"));	
 		Assert.assertEquals(getDomText(locateElement("")), "");
+	}
+	
+	@Test(dataProvider = "data")
+	public void dataProviderTest(String username, String password) {
+		System.out.println(username+" | "+password);
 	}
 
 }

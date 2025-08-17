@@ -3,3 +3,6 @@ test-output/
 .project
 .settings/
 target/
+.allure/
+allure-report/
+allure-results/
