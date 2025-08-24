@@ -21,8 +21,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SeleniumBase {
 	
-	private static RemoteWebDriver driver;
-	private static WebDriverWait wait;
+	protected static RemoteWebDriver driver;
+	protected static WebDriverWait wait;
 	
 	private static final Logger LOGGER = Logger.getLogger(SeleniumBase.class.getName());
 	
@@ -35,7 +35,7 @@ public class SeleniumBase {
 		LOGGER.info("Chrome browser launched successfully.");
 	}	
 	
-	public static void launchBrowser(String browser) {
+	public static RemoteWebDriver launchBrowser(String browser) {
 		switch (browser.toUpperCase()) {
 		case "CHROME":
 			driver = new ChromeDriver();
@@ -49,6 +49,7 @@ public class SeleniumBase {
 		default:
 			throw new RuntimeException("Currently we're not support give "+browser+" broswer.");
 		}
+		return driver;
 	}
 	
 	public static void maximize() {
@@ -97,6 +98,12 @@ public class SeleniumBase {
 		driver.executeScript("arguments[0].click();", element);
 		LOGGER.info("Successfully clicked the "+element+" using javascript click action");
 	}
+	
+	public static void type(String locator, String text) {
+		locateElement(locator).sendKeys(text);
+		LOGGER.info("Successfully typed the "+text+" in the given id element");
+	}
+	
 	
 	public static void type(WebElement element, String text) {
 		element.sendKeys(text);

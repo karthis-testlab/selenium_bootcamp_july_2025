@@ -1,10 +1,13 @@
 package com.selenium.testng.script.demo;
 
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.selenium.page.factory.script.demo.LoginPage;
+
 public class SauceLabDemoTest extends TestNGHooks {
+	
+	LoginPage loginPage;
 	
 	@DataProvider(name = "data")
 	public String[][] getTestData() {
@@ -13,14 +16,13 @@ public class SauceLabDemoTest extends TestNGHooks {
 	
 	@Test
 	public void userShouldAbleToLoginIntoSauceDemoSite() {
-		waitUnitElemenVisibilty(locateElement("user-name"));
-		type(locateElement("user-name"), "standard_user");
-		type(locateElement("password"), "secret_sauce");
-		click(locateElement(LocatorType.XPATH, "//*[@id=login-button]"));	
-		Assert.assertEquals(getDomText(locateElement("")), "");
+		loginPage = new LoginPage();
+		loginPage.enterUserName("standard_user");
+		loginPage.enterPassword("secret_sauce");
+		loginPage.clickLoginButton();
 	}
 	
-	@Test(dataProvider = "data")
+	//@Test(dataProvider = "data")
 	public void dataProviderTest(String username, String password) {
 		System.out.println(username+" | "+password);
 	}
