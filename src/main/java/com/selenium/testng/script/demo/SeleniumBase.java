@@ -134,5 +134,13 @@ public class SeleniumBase {
 			e.printStackTrace();
 		}
 	}
+	
+	public static String getCurrentPageUrl() {
+		return driver.getCurrentUrl();
+	}
+	
+	public static RemoteWebDriver getDriver() {
+		return driver;
+	}
 
 }
