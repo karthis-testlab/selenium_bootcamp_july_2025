@@ -11,8 +11,10 @@ And User confirm the added product and checkout the product to purchase with det
 | firstName     | lastName     | postalCode |
 | TestFirstName | TestLastName | 626117     |
 Then User able to validate and confirm the added product is correct one or not
+| productName                       |
+| Test.allTheThings() T-Shirt (Red  |
 
-@smoke @e2e
+@e2e
 Scenario Outline: User able to the checkout the multiple products which were added into the cart
 When User want to the multiple products "<product_name>" purchase and add to the cart
 And User confirm the added product and checkout the product to purchase with details
