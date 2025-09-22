@@ -5,7 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
 		          features = "src/test/java/features/saucedemo.feature:8",
-		          glue = {"step.definitions", "hooks"},
+		          glue = {"pico.steps.def"},
 		          dryRun = false,
 		          plugin = {
 		        		  "pretty",
