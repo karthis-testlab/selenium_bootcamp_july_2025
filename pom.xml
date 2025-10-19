@@ -5,7 +5,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
+		<java.version>21</java.version>
 		<allure.version>2.24.0</allure.version>
+		<maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
+		<maven.surefire.plugin.version>3.5.2</maven.surefire.plugin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -63,12 +66,37 @@
 			<artifactId>cucumber-testng</artifactId>
 			<version>7.28.1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer -->
+		<!--
+		https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-picocontainer</artifactId>
 			<version>7.28.2</version>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven.surefire.plugin.version}</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>${testngFileName}.xml</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

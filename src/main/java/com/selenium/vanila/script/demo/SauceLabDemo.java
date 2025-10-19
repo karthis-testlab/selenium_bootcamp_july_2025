@@ -10,7 +10,7 @@ public class SauceLabDemo extends SeleniumBase {
 		waitUnitElemenVisibilty(locateElement("user-name"));
 		type(locateElement("user-name"), "standard_user");
 		type(locateElement("password"), "secret_sauce");
-		click(locateElement(LocatorType.XPATH, "//*[@id=login-button]"));		
+		click(locateElement(LocatorType.XPATH, "//input[@id='login-button']"));		
 	}
 
 }
